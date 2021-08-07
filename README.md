@@ -26,7 +26,7 @@
 
 [![Language grade: JavaScript](https://img.shields.io/lgtm/grade/javascript/g/bjerkio/nestjs-slack.svg?logo=lgtm&logoWidth=18)](https://lgtm.com/projects/g/bjerkio/nestjs-slack/context:javascript)
 [![codecov](https://codecov.io/gh/bjerkio/nestjs-slack/branch/main/graph/badge.svg)](https://codecov.io/gh/bjerkio/nestjs-slack)
-[![Maintainability](https://api.codeclimate.com/v1/badges/85ecf3895e428d2c3064/maintainability)](https://codeclimate.com/github/bjerkio/nestjs-slack/maintainability)
+[![Maintainability](https://api.codeclimate.com/v1/badges/95329385d5f02494fd7a/maintainability)](https://codeclimate.com/github/bjerkio/nestjs-slack/maintainability)
 
 **NestjS Slack** helps you sending Slack messages in your [NestJS] application.
 Combined with `slack-block-builder` you can easily create maintainable, testable
