@@ -1,8 +1,8 @@
 import { DynamicModule, Module, Provider } from '@nestjs/common';
 import type { WebClientOptions } from '@slack/web-api';
-import invariant from 'ts-invariant';
 import { SLACK_MODULE_OPTIONS, SLACK_WEB_CLIENT } from './constants';
 import { SlackService } from './slack.service';
+import { invariant } from './utils';
 
 export interface SlackApiOptions {
   /**

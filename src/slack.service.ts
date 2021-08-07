@@ -1,10 +1,10 @@
 import { Inject, Injectable } from '@nestjs/common';
 import type { ChatPostMessageArguments, WebClient } from '@slack/web-api';
 import type { SlackBlockDto } from 'slack-block-builder';
-import invariant from 'ts-invariant';
 import { SLACK_MODULE_OPTIONS, SLACK_WEB_CLIENT } from './constants';
 import type { SlackConfig, SlackRequestType } from './slack.module';
 import { StructuredJson } from './types';
+import { invariant } from './utils';
 
 export type SlackMessageOptions = Partial<ChatPostMessageArguments>;
 
