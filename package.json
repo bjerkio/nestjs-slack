@@ -56,8 +56,5 @@
       "optional": true
     }
   },
-  "prettier": "@cobraz/prettier-config",
-  "dependencies": {
-    "ts-invariant": "^0.9.1"
-  }
+  "prettier": "@cobraz/prettier-config"
 }
