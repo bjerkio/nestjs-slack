@@ -21,7 +21,7 @@ jobs:
         env:
           CI: true
       - uses: codecov/codecov-action@v2
-      - uses: GoogleCloudPlatform/release-please-action@v2.28
+      - uses: GoogleCloudPlatform/release-please-action@v2.29.2
         id: release
         with:
           token: ${{ secrets.GITHUB_TOKEN }}
