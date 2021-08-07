@@ -4,7 +4,7 @@ import type { SlackBlockDto } from 'slack-block-builder';
 import invariant from 'ts-invariant';
 import { SLACK_MODULE_OPTIONS, SLACK_WEB_CLIENT } from './constants';
 import type { SlackConfig, SlackRequestType } from './slack.module';
-import { LABELS_KEY, OPERATION_KEY, StructuredJson } from './types';
+import { StructuredJson } from './types';
 
 export type SlackMessageOptions = Partial<ChatPostMessageArguments>;
 
