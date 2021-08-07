@@ -107,31 +107,37 @@ export class SlackService {
     }
 
     const requestTypes: Record<SlackRequestType, () => Promise<void>> = {
-      api: async () => {
-        invariant(this.client, 'expected this.client to be WebClient');
-        invariant(req.channel, 'expected channel to be applied');
-
-        // We're type-casting since Typescript is confused about `channel`
-        // being optional above. We're asserting above, but still it is confused. 🤷‍♂️
-        await this.client.chat.postMessage(req as ChatPostMessageArguments);
-      },
-      stdout: async () => {
-        this.options.output(req);
-      },
-      stackdriver: async () => {
-        const entry: StructuredJson = {
-          severity: 'NOTICE',
-          message: req,
-          'logging.googleapis.com/labels': { type: 'nestjs-slack' },
-          'logging.googleapis.com/operation': {
-            producer: 'github.com/bjerkio/nestjs-slack',
-          },
-        };
-
-        this.options.output(entry);
-      },
+      api: async () => this.runApiRequest(req),
+      stdout: async () => this.runStdoutRequest(req),
+      stackdriver: async () => this.runStackdriverRequest(req),
     };
 
     await requestTypes[this.options.type]();
+  }
+
+  private async runApiRequest(req: SlackMessageOptions) {
+    invariant(this.client, 'expected this.client to be WebClient');
+    invariant(req.channel, 'expected channel to be applied');
+
+    // We're type-casting since Typescript is confused about `channel`
+    // being optional above. We're asserting above, but still it is confused. 🤷‍♂️
+    await this.client.chat.postMessage(req as ChatPostMessageArguments);
+  }
+
+  private async runStdoutRequest(req: SlackMessageOptions) {
+    this.options.output(req);
+  }
+
+  private async runStackdriverRequest(req: SlackMessageOptions) {
+    const entry: StructuredJson = {
+      severity: 'NOTICE',
+      message: req,
+      'logging.googleapis.com/labels': { type: 'nestjs-slack' },
+      'logging.googleapis.com/operation': {
+        producer: 'github.com/bjerkio/nestjs-slack',
+      },
+    };
+
+    this.options.output(entry);
   }
 }
