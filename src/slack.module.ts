@@ -67,7 +67,7 @@ export class SlackModule {
     const options: SlackConfig = {
       type: 'stdout',
       output: /* istanbul ignore next */ (out: unknown) =>
-        process.stdout.write(JSON.stringify(out)),
+        process.stdout.write(`${JSON.stringify(out)}\n`),
       ...opts,
     };
     const providers = [
