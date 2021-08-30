@@ -39,7 +39,7 @@ and reusable Slack code declaratively and ready for production.
 - Used in many production workloads.
 - Building blocks with [slack-block-builder].
 - Supports sending messages directly to Slack Web API.
-- Supports Google Stackdriver (Logger).
+- Supports Google Logging.
 - Zero dependencies (there are `peerDependencies`)
 
 [slack-block-builder]: https://github.com/raycharius/slack-block-builder

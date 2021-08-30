@@ -18,7 +18,7 @@ export interface SlackApiOptions {
   clientOptions?: WebClientOptions;
 }
 
-export type SlackRequestType = 'api' | 'stdout' | 'stackdriver' | 'google';
+export type SlackRequestType = 'api' | 'stdout' | 'google';
 
 export interface SlackConfig {
   /**
@@ -54,7 +54,7 @@ export interface SlackConfig {
   /**
    * Setting this changes which function is used to stdout.
    *
-   * Only used for types `stdout` and `stackdriver`
+   * Only used for types `stdout`
    */
   output?: (out: unknown) => void;
 
@@ -74,11 +74,6 @@ export class SlackModule {
         process.stdout.write(`${JSON.stringify(out)}\n`),
       ...opts,
     };
-
-    // Type `stackdriver` has changed to `google`
-    if (options.type === 'stackdriver') {
-      options.type = 'google';
-    }
 
     const providers = [
       {
