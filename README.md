@@ -87,6 +87,26 @@ export class AuthService {
 }
 ```
 
+### Use with Google Logging
+
+```shell
+▶ yarn add @google-cloud/logging
+```
+
+```typescript
+import { SlackModule } from 'nestjs-slack';
+
+@Module({
+  imports: [SlackModule.forRoot({ type: 'google' })],
+})
+export class AppModule {}
+```
+
+When `type` is set to `google` the `@google-cloud/logging` package will be used
+to send logs to stdout [according to structured logs][structured-logs].
+
+[structured-logs]: https://cloud.google.com/logging/docs/structured-logging
+
 ## Contribute & Disclaimer
 
 We love to get help 🙏 Read more about how to get started in
