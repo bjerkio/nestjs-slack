@@ -1,4 +1,4 @@
-import type { Log } from '@google-cloud/logging';
+import type { LogSync } from '@google-cloud/logging';
 import { Inject, Injectable } from '@nestjs/common';
 import type { ChatPostMessageArguments, WebClient } from '@slack/web-api';
 import type { SlackBlockDto } from 'slack-block-builder';
@@ -17,7 +17,7 @@ export class SlackService {
   constructor(
     @Inject(SLACK_MODULE_OPTIONS) private readonly options: SlackConfig,
     @Inject(SLACK_WEB_CLIENT) private readonly client: WebClient | null,
-    @Inject(GOOGLE_LOGGING) private readonly log: Log | null,
+    @Inject(GOOGLE_LOGGING) private readonly log: LogSync | null,
   ) {}
 
   /**
@@ -138,12 +138,11 @@ export class SlackService {
       severity: 'NOTICE',
       'logging.googleapis.com/labels': { type: 'nestjs-slack' },
       'logging.googleapis.com/operation': {
-        producer: 'github.com/bjerkio/nestjs-slack',
+        producer: 'github.com/bjerkio/nestjs-slack@v1',
       },
     };
-
     invariant(this.log, 'expected Google Logger instance');
 
-    await this.log.write(this.log.entry(metadata, req));
+    await this.log.write(this.log.entry(metadata, { slack: req }));
   }
 }
