@@ -1,9 +1,13 @@
+import type { Log } from '@google-cloud/logging';
 import { Inject, Injectable } from '@nestjs/common';
 import type { ChatPostMessageArguments, WebClient } from '@slack/web-api';
 import type { SlackBlockDto } from 'slack-block-builder';
-import { SLACK_MODULE_OPTIONS, SLACK_WEB_CLIENT } from './constants';
+import {
+  GOOGLE_LOGGING,
+  SLACK_MODULE_OPTIONS,
+  SLACK_WEB_CLIENT,
+} from './constants';
 import type { SlackConfig, SlackRequestType } from './slack.module';
-import { StructuredJson } from './types';
 import { invariant } from './utils';
 
 export type SlackMessageOptions = Partial<ChatPostMessageArguments>;
@@ -13,6 +17,7 @@ export class SlackService {
   constructor(
     @Inject(SLACK_MODULE_OPTIONS) private readonly options: SlackConfig,
     @Inject(SLACK_WEB_CLIENT) private readonly client: WebClient | null,
+    @Inject(GOOGLE_LOGGING) private readonly log: Log | null,
   ) {}
 
   /**
@@ -109,7 +114,7 @@ export class SlackService {
     const requestTypes: Record<SlackRequestType, () => Promise<void>> = {
       api: async () => this.runApiRequest(req),
       stdout: async () => this.runStdoutRequest(req),
-      stackdriver: async () => this.runStackdriverRequest(req),
+      google: async () => this.runGoogleLoggingRequest(req),
     };
 
     await requestTypes[this.options.type]();
@@ -128,16 +133,17 @@ export class SlackService {
     this.options.output(req);
   }
 
-  private async runStackdriverRequest(req: SlackMessageOptions) {
-    const entry: StructuredJson = {
+  private async runGoogleLoggingRequest(req: SlackMessageOptions) {
+    const metadata = {
       severity: 'NOTICE',
-      message: req,
       'logging.googleapis.com/labels': { type: 'nestjs-slack' },
       'logging.googleapis.com/operation': {
         producer: 'github.com/bjerkio/nestjs-slack',
       },
     };
 
-    this.options.output(entry);
+    invariant(this.log, 'expected Google Logger instance');
+
+    await this.log.write(this.log.entry(metadata, req));
   }
 }

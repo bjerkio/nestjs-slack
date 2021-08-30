@@ -15,6 +15,7 @@ module.exports = {
       statements: -10,
     },
   },
+  modulePathIgnorePatterns: ['<rootDir>/dist/'],
   globals: {
     'ts-jest': {
       tsconfig: 'tsconfig.jest.json',
