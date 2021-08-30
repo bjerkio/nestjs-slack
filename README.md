@@ -105,7 +105,10 @@ export class AppModule {}
 When `type` is set to `google` the `@google-cloud/logging` package will be used
 to send logs to stdout [according to structured logs][structured-logs].
 
+You can deploy [gcl-slack] to consume logs from this library.
+
 [structured-logs]: https://cloud.google.com/logging/docs/structured-logging
+[gcl-slack]: https://github.com/bjerkio/gcl-slack
 
 ## Contribute & Disclaimer
 
