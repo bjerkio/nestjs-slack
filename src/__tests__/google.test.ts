@@ -49,9 +49,9 @@ describe('google logging', () => {
     expect(write).toHaveBeenCalledWith({
       'logging.googleapis.com/labels': { type: 'nestjs-slack' },
       'logging.googleapis.com/operation': {
-        producer: 'github.com/bjerkio/nestjs-slack',
+        producer: 'github.com/bjerkio/nestjs-slack@v1',
       },
-      message: { channel: 'hello-world', text: 'hello-world' },
+      message: { slack: { channel: 'hello-world', text: 'hello-world' } },
       severity: 'NOTICE',
     });
   });
