@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.2.0](https://www.github.com/bjerkio/nestjs-slack/compare/v1.1.0...v1.2.0) (2021-08-30)
+
+
+### Features
+
+* Append version to producer metadata and add `slack` to log entry. ([1a499d8](https://www.github.com/bjerkio/nestjs-slack/commit/1a499d81686d39319766617422e2e1946270a7c6))
+
 ## [1.1.0](https://www.github.com/bjerkio/nestjs-slack/compare/v1.0.1...v1.1.0) (2021-08-30)
 
 
