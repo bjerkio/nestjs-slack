@@ -1,7 +1,7 @@
 import { invariant } from '../utils';
 
 describe('invariant', () => {
-  it('should throw', () => {
+  it('must throw', () => {
     try {
       invariant(false, 'expected');
     } catch (e) {

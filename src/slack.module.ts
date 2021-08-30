@@ -1,6 +1,10 @@
 import { DynamicModule, Module, Provider } from '@nestjs/common';
 import type { WebClientOptions } from '@slack/web-api';
-import { SLACK_MODULE_OPTIONS, SLACK_WEB_CLIENT } from './constants';
+import {
+  GOOGLE_LOGGING,
+  SLACK_MODULE_OPTIONS,
+  SLACK_WEB_CLIENT,
+} from './constants';
 import { SlackService } from './slack.service';
 import { invariant } from './utils';
 
@@ -14,7 +18,7 @@ export interface SlackApiOptions {
   clientOptions?: WebClientOptions;
 }
 
-export type SlackRequestType = 'api' | 'stdout' | 'stackdriver';
+export type SlackRequestType = 'api' | 'stdout' | 'google';
 
 export interface SlackConfig {
   /**
@@ -22,10 +26,10 @@ export interface SlackConfig {
    * to Slack.
    *
    * `api` is the default option, it utilizes `@slack/web-api`, which also
-   * requires setting `apiOptions`. Setting `stdout` and `stackdriver` makes
+   * requires setting `apiOptions`. Setting `stdout` and `google` makes
    * this module send requests directly to stdout as a JSON-string. This is
    * useful where you're consuming logs and want to forward them to Slack.
-   * `stackdriver` provides a JSON structure as Google Stackdriver logger wants.
+   * `google` provides a JSON structure as Google Logging wants.
    *
    * **Note**: We suggest using a distributed model where logs are consumed
    * when logging to Slack in production; it's easier to dump something to
@@ -50,7 +54,7 @@ export interface SlackConfig {
   /**
    * Setting this changes which function is used to stdout.
    *
-   * Only used for types `stdout` and `stackdriver`
+   * Only used for types `stdout`
    */
   output?: (out: unknown) => void;
 
@@ -70,11 +74,13 @@ export class SlackModule {
         process.stdout.write(`${JSON.stringify(out)}\n`),
       ...opts,
     };
+
     const providers = [
       {
         provide: SLACK_MODULE_OPTIONS,
         useValue: options,
       },
+      this.createAsyncGoogleLogger(options),
       this.createAsyncWebClient(options),
     ];
     return {
@@ -82,6 +88,24 @@ export class SlackModule {
       module: SlackModule,
       providers,
       exports: providers,
+    };
+  }
+
+  private static createAsyncGoogleLogger({ type }: SlackConfig): Provider {
+    if (type !== 'google') {
+      return {
+        provide: GOOGLE_LOGGING,
+        useValue: null,
+      };
+    }
+
+    return {
+      provide: GOOGLE_LOGGING,
+      useFactory: async () => {
+        const { Logging } = await import('@google-cloud/logging');
+        const logging = new Logging();
+        return logging.logSync('slack');
+      },
     };
   }
 
