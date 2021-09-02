@@ -523,9 +523,9 @@
     teeny-request "^7.0.0"
 
 "@google-cloud/logging@^9.5.5":
-  version "9.5.5"
-  resolved "https://registry.yarnpkg.com/@google-cloud/logging/-/logging-9.5.5.tgz#8f014369b9c475af8ea470020ac2a0ca1e275eab"
-  integrity sha512-Tosx7vM9wei+VjkL2LpLjKNU3sP0C73JD3nqw1VgvJ9H/PINwBrrl5mB+BeFWHfqseoCI4l3XypVxKYlX5Zadw==
+  version "9.5.6"
+  resolved "https://registry.yarnpkg.com/@google-cloud/logging/-/logging-9.5.6.tgz#6cbaa25aa8e66eee15feb303070377e6b7c705a8"
+  integrity sha512-U3nyBqLPDtzOdRURvmLEOqsfzIOHgdR92v5cEmM1Ti6BmYCiYI5TJL3nkfmrrjg1oVpBki9r4HMRjyZ/iBrLog==
   dependencies:
     "@google-cloud/common" "^3.4.1"
     "@google-cloud/paginator" "^3.0.0"
@@ -533,7 +533,7 @@
     "@google-cloud/promisify" "^2.0.0"
     arrify "^2.0.1"
     dot-prop "^6.0.0"
-    eventid "^1.0.0"
+    eventid "^2.0.0"
     extend "^3.0.2"
     gcp-metadata "^4.0.0"
     google-auth-library "^7.0.0"
@@ -2607,13 +2607,13 @@ eventemitter3@^4.0.4:
   resolved "https://registry.yarnpkg.com/eventemitter3/-/eventemitter3-4.0.7.tgz#2de9b68f6528d5644ef5c59526a1b4a07306169f"
   integrity sha512-8guHBZCwKnFhYdHr2ysuRWErTwhoN2X8XELRlrRwpmfeY2jjuUN4taQMsULKUVo1K4DvZl+0pgfyoysHxvmvEw==
 
-eventid@^1.0.0:
-  version "1.0.0"
-  resolved "https://registry.yarnpkg.com/eventid/-/eventid-1.0.0.tgz#61dbfd1acbd68dba372e54e1e2a803e1aca027f2"
-  integrity sha512-4upSDsvpxhWPsmw4fsJCp0zj8S7I0qh1lCDTmZXP8V3TtryQKDI8CgQPN+e5JakbWwzaAX3lrdp2b3KSoMSUpw==
+eventid@^2.0.0:
+  version "2.0.0"
+  resolved "https://registry.yarnpkg.com/eventid/-/eventid-2.0.0.tgz#884fb67da8cf528964240040ac7304de58d278d8"
+  integrity sha512-4CYGJ4e2ZkNSr89U/IGzUYOSqppRUCUz37HQX+xk3ArJwK3K1B7TI1PBeWb1umz3rDuMUwPzJCWR44JJS8yEnQ==
   dependencies:
     d64 "^1.0.0"
-    uuid "^3.0.1"
+    uuid "^8.0.0"
 
 exec-sh@^0.3.2:
   version "0.3.4"
@@ -6310,7 +6310,7 @@ uuid@8.3.2, uuid@^8.0.0, uuid@^8.3.0:
   resolved "https://registry.yarnpkg.com/uuid/-/uuid-8.3.2.tgz#80d5b5ced271bb9af6c445f21a1a04c606cefbe2"
   integrity sha512-+NYs2QeMWy+GWFOEm9xnn6HCDp0l7QBD7ml8zLUmJ+93Q5NF0NocErnwkTkXVFNiX3/fpC6afS8Dhb/gz7R7eg==
 
-uuid@^3.0.1, uuid@^3.3.2:
+uuid@^3.3.2:
   version "3.4.0"
   resolved "https://registry.yarnpkg.com/uuid/-/uuid-3.4.0.tgz#b23e4358afa8a202fe7a100af1f5f883f02007ee"
   integrity sha512-HjSDRw6gZE5JMggctHBcjVak08+KEVhSIiDzFnT9S9aegmp85S/bReBVTb4QTFaRNptJ9kuYaNhnbNEOkbKb/A==
