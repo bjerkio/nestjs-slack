@@ -1,6 +1,6 @@
 {
   "name": "nestjs-slack",
-  "version": "1.2.0",
+  "version": "1.1.0",
   "description": "",
   "main": "dist/plugin.js",
   "repository": "github:bjerkio/nestjs-slack",
@@ -47,20 +47,16 @@
       "prettier --write"
     ]
   },
+  "dependencies": {
+    "@slack/web-api": "^6",
+    "slack-block-builder": "^2"
+  },
   "peerDependencies": {
     "@nestjs/common": ">=7 <=8",
     "@nestjs/core": ">=7 <=8",
-    "@slack/web-api": "^6",
-    "slack-block-builder": "^2",
     "@google-cloud/logging": "^9"
   },
   "peerDependenciesMeta": {
-    "slack-block-builder": {
-      "optional": true
-    },
-    "@slack/web-api": {
-      "optional": true
-    },
     "@google-cloud/logging": {
       "optional": true
     }
