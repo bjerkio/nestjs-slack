@@ -963,7 +963,7 @@
   resolved "https://registry.yarnpkg.com/@slack/types/-/types-2.1.0.tgz#3b8d9fc600938ac3b55c39d93d7d4be74b380212"
   integrity sha512-6FSyuKt3dqmXpKxu5cH7vCm2Ekj7WpyaYyznTQ/SpKZKkdLvpkcp0/HbPFTtDI9O1wHGeaPgs6h3AtZmRRDXjA==
 
-"@slack/web-api@^6.3.0":
+"@slack/web-api@^6":
   version "6.4.0"
   resolved "https://registry.yarnpkg.com/@slack/web-api/-/web-api-6.4.0.tgz#fe8212e4aca50c4cbafe4dac3f4b81c84c527423"
   integrity sha512-Hi0pq60d/zCqn1UQvuSyrMcoLGNbKUBL/Tmk1b1RPTZdVYiRK8zp337glvhxTBwiaGOu+58uO5yflpK1AAuoRw==
@@ -5105,9 +5105,9 @@ prettier-linter-helpers@^1.0.0:
     fast-diff "^1.1.2"
 
 prettier@^2.3.2:
-  version "2.3.2"
-  resolved "https://registry.yarnpkg.com/prettier/-/prettier-2.3.2.tgz#ef280a05ec253712e486233db5c6f23441e7342d"
-  integrity sha512-lnJzDfJ66zkMy58OL5/NY5zp70S7Nz6KqcKkXYzn2tMVrNxvbqaBpg7H3qHaLxCJ5lNMsGuM8+ohS7cZrthdLQ==
+  version "2.4.1"
+  resolved "https://registry.yarnpkg.com/prettier/-/prettier-2.4.1.tgz#671e11c89c14a4cfc876ce564106c4a6726c9f5c"
+  integrity sha512-9fbDAXSBcc6Bs1mZrDYb3XKzDLm4EXXL9sC1LqKP5rZkT6KRr/rf9amVUcODVXgguK/isJz0d0hP72WeaKWsvA==
 
 pretty-format@^26.6.2:
   version "26.6.2"
@@ -5650,10 +5650,10 @@ sisteransi@^1.0.5:
   resolved "https://registry.yarnpkg.com/sisteransi/-/sisteransi-1.0.5.tgz#134d681297756437cc05ca01370d3a7a571075ed"
   integrity sha512-bLGGlR1QxBcynn2d5YmDX4MGjlZvy2MRBDRNHLJ8VI6l6+9FUiyTFNJ0IveOSP0bcXgVDPRcfGqA0pjaqUpfVg==
 
-slack-block-builder@^2.1.0:
-  version "2.1.1"
-  resolved "https://registry.yarnpkg.com/slack-block-builder/-/slack-block-builder-2.1.1.tgz#81911112f471d9bcbdd51ad8e5a8d1ac6d9717bd"
-  integrity sha512-Y5OGAUvEQKWWOIHNINd9F1WwYur9EoQDyBv0EZ814IP9h05QXL2YWfL6/TnNJ7e1Cii8M+KVQwWGn1Lv6VAmOw==
+slack-block-builder@^2:
+  version "2.1.2"
+  resolved "https://registry.yarnpkg.com/slack-block-builder/-/slack-block-builder-2.1.2.tgz#28d9c6b09607ebef538f265e034f88357c5f186b"
+  integrity sha512-FvsrU3FdlhLqZmkTlURDZURddIMxqCRz4Iw8XgoujROeJJKEJosnr5TQkkSCtcrg980hqwBeVvU+2gyN7q7kNg==
 
 slash@^3.0.0:
   version "3.0.0"
