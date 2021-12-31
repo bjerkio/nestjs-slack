@@ -69,7 +69,7 @@ export class AppModule {}
 
 To use `webhook` type, you'll typically use these settings:
 
-````typescript
+```typescript
 SlackModule.forRoot({
   type: 'webhook',
   webhookOptions: {
@@ -96,7 +96,7 @@ export class AuthService {
     return 'hello world';
   }
 }
-````
+```
 
 ### Use with Google Logging
 
