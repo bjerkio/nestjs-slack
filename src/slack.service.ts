@@ -1,10 +1,12 @@
 import type { LogSync } from '@google-cloud/logging';
+import axios, { AxiosError } from 'axios';
 import { Inject, Injectable } from '@nestjs/common';
 import type { ChatPostMessageArguments, WebClient } from '@slack/web-api';
 import type { SlackBlockDto } from 'slack-block-builder';
 import {
   GOOGLE_LOGGING,
   SLACK_MODULE_OPTIONS,
+  SLACK_WEBHOOK_URL,
   SLACK_WEB_CLIENT,
 } from './constants';
 import type { SlackConfig, SlackRequestType } from './slack.module';
@@ -18,6 +20,7 @@ export class SlackService {
     @Inject(SLACK_MODULE_OPTIONS) private readonly options: SlackConfig,
     @Inject(SLACK_WEB_CLIENT) private readonly client: WebClient | null,
     @Inject(GOOGLE_LOGGING) private readonly log: LogSync | null,
+    @Inject(SLACK_WEBHOOK_URL) private readonly webhookUrl: string | null,
   ) {}
 
   /**
@@ -103,7 +106,7 @@ export class SlackService {
    * @param opts
    */
   async postMessage(req: SlackMessageOptions): Promise<void> {
-    if (!req.channel) {
+    if (!req.channel && this.options.type !== 'webhook') {
       invariant(
         this.options.defaultChannel,
         'neither channel nor defaultChannel was applied',
@@ -113,6 +116,7 @@ export class SlackService {
 
     const requestTypes: Record<SlackRequestType, () => Promise<void>> = {
       api: async () => this.runApiRequest(req),
+      webhook: async () => this.runWebhookRequest(req),
       stdout: async () => this.runStdoutRequest(req),
       google: async () => this.runGoogleLoggingRequest(req),
     };
@@ -127,6 +131,18 @@ export class SlackService {
     // We're type-casting since Typescript is confused about `channel`
     // being optional above. We're asserting above, but still it is confused. 🤷‍♂️
     await this.client.chat.postMessage(req as ChatPostMessageArguments);
+  }
+
+  private async runWebhookRequest(req: SlackMessageOptions) {
+    invariant(this.webhookUrl, 'expected webhook url to exist');
+
+    await axios.post(this.webhookUrl, req).catch((error: AxiosError) => {
+      invariant(error.response);
+
+      throw new Error(
+        `Could not send request to Slack Webhook: ${error.response.data}`,
+      );
+    });
   }
 
   private async runStdoutRequest(req: SlackMessageOptions) {

@@ -3,6 +3,7 @@ import { Test } from '@nestjs/testing';
 import {
   GOOGLE_LOGGING,
   SLACK_MODULE_OPTIONS,
+  SLACK_WEBHOOK_URL,
   SLACK_WEB_CLIENT,
 } from '../constants';
 import { SlackService } from '../slack.service';
@@ -22,6 +23,10 @@ describe('google logging', () => {
         },
         {
           provide: SLACK_WEB_CLIENT,
+          useValue: null,
+        },
+        {
+          provide: SLACK_WEBHOOK_URL,
           useValue: null,
         },
         {
