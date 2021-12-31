@@ -1,5 +1,6 @@
 import { Test } from '@nestjs/testing';
-import { SlackConfig, SlackModule } from '../slack.module';
+import { SlackModule } from '../slack.module';
+import { SlackConfig } from '../types';
 
 export const createApp = (options?: Partial<SlackConfig>) => {
   return Test.createTestingModule({
