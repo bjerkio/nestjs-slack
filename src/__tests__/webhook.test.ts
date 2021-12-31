@@ -31,7 +31,7 @@ describe('webhook', () => {
   });
 
   it('Should throw when request fails', () => {
-    const scope = nock(baseUrl, { encodedQueryParams: true })
+    nock(baseUrl, { encodedQueryParams: true })
       .post('/webhook', {
         text: 'hello-world',
       })
@@ -44,7 +44,5 @@ describe('webhook', () => {
           `[Error: Could not send request to Slack Webhook: fail]`,
         ),
       );
-
-    // scope.done();
   });
 });
