@@ -1,5 +1,18 @@
 # Changelog
 
+## [1.3.0](https://www.github.com/bjerkio/nestjs-slack/compare/v1.2.0...v1.3.0) (2021-12-31)
+
+
+### Features
+
+* Add webhook type ([#80](https://www.github.com/bjerkio/nestjs-slack/issues/80)) ([4ca3e5d](https://www.github.com/bjerkio/nestjs-slack/commit/4ca3e5d2f4f866775639a6566e0d7ea193b5796a))
+* forRootAsync ([#83](https://www.github.com/bjerkio/nestjs-slack/issues/83)) ([5c06158](https://www.github.com/bjerkio/nestjs-slack/commit/5c061589ecce57077bcf252cec7b4eeee193a041))
+
+
+### Bug Fixes
+
+* add @slack/web-api and slack-block-builder to dependencies ([12686c3](https://www.github.com/bjerkio/nestjs-slack/commit/12686c37cbece91dc2f739a4c763cdae2bd60bb4))
+
 ## [1.2.0](https://www.github.com/bjerkio/nestjs-slack/compare/v1.1.0...v1.2.0) (2021-08-30)
 
 
