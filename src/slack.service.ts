@@ -9,7 +9,7 @@ import {
   SLACK_WEBHOOK_URL,
   SLACK_WEB_CLIENT,
 } from './constants';
-import type { SlackConfig, SlackRequestType } from './slack.module';
+import type { SlackConfig, SlackRequestType } from './types';
 import { invariant } from './utils';
 
 export type SlackMessageOptions = Partial<ChatPostMessageArguments>;
