@@ -39,6 +39,7 @@ and reusable Slack code declaratively and ready for production.
 - Used in many production workloads.
 - Building blocks with [slack-block-builder].
 - Supports sending messages directly to Slack Web API.
+- Supports Slack webhooks.
 - Supports Google Logging.
 
 [slack-block-builder]: https://github.com/raycharius/slack-block-builder
@@ -64,6 +65,17 @@ import { SlackModule } from 'nestjs-slack';
   ],
 })
 export class AppModule {}
+```
+
+To use `webhook` type, you'll typically use these settings:
+
+```typescript
+SlackModule.forRoot({
+  type: 'webhook',
+  webhookOptions: {
+    url: '<the webhook url>',
+  },
+}),
 ```
 
 ### Example

@@ -3,6 +3,7 @@ import type { WebClientOptions } from '@slack/web-api';
 import {
   GOOGLE_LOGGING,
   SLACK_MODULE_OPTIONS,
+  SLACK_WEBHOOK_URL,
   SLACK_WEB_CLIENT,
 } from './constants';
 import { SlackService } from './slack.service';
@@ -18,7 +19,18 @@ export interface SlackApiOptions {
   clientOptions?: WebClientOptions;
 }
 
-export type SlackRequestType = 'api' | 'stdout' | 'google';
+export interface SlackWebhookOptions {
+  /**
+   * Incoming Webhooks are a simple way to post messages from apps into Slack.
+   * Creating an Incoming Webhook gives you a unique URL to which you send a
+   * JSON payload with the message text and some options.
+   *
+   * Read more: https://api.slack.com/messaging/webhooks
+   */
+  url: string;
+}
+
+export type SlackRequestType = 'api' | 'webhook' | 'stdout' | 'google';
 
 export interface SlackConfig {
   /**
@@ -52,6 +64,12 @@ export interface SlackConfig {
   apiOptions?: SlackApiOptions;
 
   /**
+   * These configuration options are only required when type is set to
+   * `api`.
+   */
+  webhookOptions?: SlackWebhookOptions;
+
+  /**
    * Setting this changes which function is used to stdout.
    *
    * Only used for types `stdout`
@@ -82,6 +100,7 @@ export class SlackModule {
       },
       this.createAsyncGoogleLogger(options),
       this.createAsyncWebClient(options),
+      this.createAsyncWebhook(options),
     ];
     return {
       global: options.isGlobal,
@@ -131,6 +150,28 @@ export class SlackModule {
           opts.apiOptions.token,
           opts.apiOptions.clientOptions,
         );
+      },
+    };
+  }
+
+  private static createAsyncWebhook({ type }: SlackConfig): Provider {
+    if (type !== 'webhook') {
+      return {
+        provide: SLACK_WEBHOOK_URL,
+        useValue: null,
+      };
+    }
+
+    return {
+      provide: SLACK_WEBHOOK_URL,
+      inject: [SLACK_MODULE_OPTIONS],
+      useFactory: async (opts: SlackConfig) => {
+        invariant(
+          opts.webhookOptions,
+          'You must provide `webhookOptions` when using the webhook type.',
+        );
+
+        return opts.webhookOptions.url;
       },
     };
   }
