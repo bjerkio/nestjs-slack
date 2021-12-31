@@ -1,5 +1,12 @@
 # Changelog
 
+### [1.3.1](https://github.com/bjerkio/nestjs-slack/compare/v1.3.0...v1.3.1) (2021-12-31)
+
+
+### Bug Fixes
+
+* move @google-cloud/logging to devDependencies ([24d845a](https://github.com/bjerkio/nestjs-slack/commit/24d845a3860489a53c6594d8572b6a20b88a4f5d))
+
 ## [1.3.0](https://github.com/bjerkio/nestjs-slack/compare/v1.2.0...v1.3.0) (2021-12-31)
 
 
