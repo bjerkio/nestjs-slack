@@ -24,7 +24,7 @@ jobs:
       - uses: GoogleCloudPlatform/release-please-action@v2.29.2
         id: release
         with:
-          token: ${{ secrets.BJERKBOT_GITHUB_TOKEN }}
+          token: ${{ secrets.GITHUB_TOKEN }}
           release-type: node
           package-name: nestjs-slack
       - if: ${{ steps.release.outputs.release_created }}
