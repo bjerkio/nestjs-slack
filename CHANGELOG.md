@@ -1,5 +1,25 @@
 # Changelog
 
+### [1.3.1](https://www.github.com/bjerkio/nestjs-slack/compare/v1.2.0...v1.3.1) (2022-01-01)
+
+
+### Features
+
+* Add webhook type ([#80](https://www.github.com/bjerkio/nestjs-slack/issues/80)) ([4ca3e5d](https://www.github.com/bjerkio/nestjs-slack/commit/4ca3e5d2f4f866775639a6566e0d7ea193b5796a))
+* forRootAsync ([#83](https://www.github.com/bjerkio/nestjs-slack/issues/83)) ([5c06158](https://www.github.com/bjerkio/nestjs-slack/commit/5c061589ecce57077bcf252cec7b4eeee193a041))
+
+
+### Bug Fixes
+
+* add @slack/web-api and slack-block-builder to dependencies ([12686c3](https://www.github.com/bjerkio/nestjs-slack/commit/12686c37cbece91dc2f739a4c763cdae2bd60bb4))
+* move @google-cloud/logging to deps g ([3463bb6](https://www.github.com/bjerkio/nestjs-slack/commit/3463bb6f7b8221916cca87c9b67fffe56700f97f))
+* move @google-cloud/logging to devDependencies ([24d845a](https://www.github.com/bjerkio/nestjs-slack/commit/24d845a3860489a53c6594d8572b6a20b88a4f5d))
+
+
+### Miscellaneous Chores
+
+* release 1.3.1 ([974db07](https://www.github.com/bjerkio/nestjs-slack/commit/974db076ec208daeb360c249f13a432b4aebd146))
+
 ### [1.3.1](https://github.com/bjerkio/nestjs-slack/compare/v1.3.0...v1.3.1) (2021-12-31)
 
 
