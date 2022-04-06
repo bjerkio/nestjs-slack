@@ -20,7 +20,7 @@ jobs:
       - run: yarn test
         env:
           CI: true
-      - uses: codecov/codecov-action@v2
+      - uses: codecov/codecov-action@v3
       - uses: GoogleCloudPlatform/release-please-action@v2.29.2
         id: release
         with:
