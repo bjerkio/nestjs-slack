@@ -1,5 +1,12 @@
 # Changelog
 
+### [1.3.2](https://github.com/bjerkio/nestjs-slack/compare/v1.3.1...v1.3.2) (2022-05-21)
+
+
+### Bug Fixes
+
+* Remove error when channel or defaultChannel is unset for google ([54421af](https://github.com/bjerkio/nestjs-slack/commit/54421afadcbd5eb2f0e3f50d995aa78f1257a3ad))
+
 ### [1.3.1](https://www.github.com/bjerkio/nestjs-slack/compare/v1.2.0...v1.3.1) (2022-01-01)
 
 
