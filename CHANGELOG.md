@@ -1,5 +1,12 @@
 # Changelog
 
+### [1.3.3](https://github.com/bjerkio/nestjs-slack/compare/v1.3.2...v1.3.3) (2022-05-21)
+
+
+### Bug Fixes
+
+* release issue ([9354f9c](https://github.com/bjerkio/nestjs-slack/commit/9354f9c718e9cee82a58c10c26a658da64e8fb3e))
+
 ### [1.3.2](https://github.com/bjerkio/nestjs-slack/compare/v1.3.1...v1.3.2) (2022-05-21)
 
 
