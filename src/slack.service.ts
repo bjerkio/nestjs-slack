@@ -106,7 +106,10 @@ export class SlackService {
    * @param opts
    */
   async postMessage(req: SlackMessageOptions): Promise<void> {
-    if (!req.channel && this.options.type !== 'webhook') {
+    const isChannelRequired = !['webhook', 'google'].includes(
+      this.options.type,
+    );
+    if (!req.channel && isChannelRequired) {
       invariant(
         this.options.defaultChannel,
         'neither channel nor defaultChannel was applied',
