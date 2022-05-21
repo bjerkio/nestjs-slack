@@ -50,7 +50,7 @@
   "dependencies": {
     "@google-cloud/logging": "^10.0.1",
     "@slack/web-api": "^6",
-    "axios": "^0.24.0",
+    "axios": "^0.27.2",
     "slack-block-builder": "^2"
   },
   "peerDependencies": {
