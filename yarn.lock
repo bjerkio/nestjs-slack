@@ -533,9 +533,9 @@
     teeny-request "^7.0.0"
 
 "@google-cloud/logging@^10.0.1":
-  version "10.0.1"
-  resolved "https://registry.yarnpkg.com/@google-cloud/logging/-/logging-10.0.1.tgz#2b19b48f93810b460b384c92d3bbbc32bf6f199a"
-  integrity sha512-rTej2oZ6ph967gdG8LuOClep7JQZAy03k2EcGpvaWfTBrFNjJtmZbN3FP4WIyJj8XP49V7uMKouEWFMSpPo5og==
+  version "10.0.3"
+  resolved "https://registry.yarnpkg.com/@google-cloud/logging/-/logging-10.0.3.tgz#5d6b055c51d54c3cb8dc0292c1854f2c73ca2b3d"
+  integrity sha512-NlxxLAWvx8HjnXAGv7L6iI8oy2WyRaeTY7Z+yVPrq0tyygge3HbZqsa9qFcGA7x0TPJotcjDsIv3AwxKq68ptA==
   dependencies:
     "@google-cloud/common" "^3.4.1"
     "@google-cloud/paginator" "^4.0.0"
