@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.4.0](https://github.com/bjerkio/nestjs-slack/compare/v1.3.4...v1.4.0) (2022-07-13)
+
+
+### Miscellaneous Chores
+
+* release 1.4.0 ([6dd1bb6](https://github.com/bjerkio/nestjs-slack/commit/6dd1bb66d035093b86b82177b1e8231113fc101f))
+
 ### [1.3.4](https://github.com/bjerkio/nestjs-slack/compare/v1.3.3...v1.3.4) (2022-05-21)
 
 
