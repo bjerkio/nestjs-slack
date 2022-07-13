@@ -106,17 +106,6 @@ export class SlackService {
    * @param opts
    */
   async postMessage(req: SlackMessageOptions): Promise<void> {
-    const isChannelRequired = !['webhook', 'google'].includes(
-      this.options.type,
-    );
-    if (!req.channel && isChannelRequired) {
-      invariant(
-        this.options.defaultChannel,
-        'neither channel nor defaultChannel was applied',
-      );
-      req.channel = this.options.defaultChannel;
-    }
-
     const requestTypes: Record<SlackRequestType, () => Promise<void>> = {
       api: async () => this.runApiRequest(req),
       webhook: async () => this.runWebhookRequest(req),
@@ -128,15 +117,20 @@ export class SlackService {
   }
 
   private async runApiRequest(req: SlackMessageOptions) {
+    invariant(this.options.type === 'api');
     invariant(this.client, 'expected this.client to be WebClient');
-    invariant(req.channel, 'expected channel to be applied');
 
-    // We're type-casting since Typescript is confused about `channel`
-    // being optional above. We're asserting above, but still it is confused. 🤷‍♂️
-    await this.client.chat.postMessage(req as ChatPostMessageArguments);
+    const channel = req.channel ?? this.options.defaultChannel;
+    invariant(channel, 'neither channel nor defaultChannel was applied');
+
+    await this.client.chat.postMessage({
+      channel,
+      ...req,
+    });
   }
 
   private async runWebhookRequest(req: SlackMessageOptions) {
+    invariant(this.options.type === 'webhook');
     invariant(this.webhookUrl, 'expected webhook url to exist');
 
     await axios.post(this.webhookUrl, req).catch((error: AxiosError) => {
@@ -149,10 +143,12 @@ export class SlackService {
   }
 
   private async runStdoutRequest(req: SlackMessageOptions) {
+    invariant(this.options.type === 'stdout');
     this.options.output(req);
   }
 
   private async runGoogleLoggingRequest(req: SlackMessageOptions) {
+    invariant(this.options.type === 'google');
     const metadata = {
       severity: 'NOTICE',
       'logging.googleapis.com/labels': { type: 'nestjs-slack' },
@@ -160,8 +156,18 @@ export class SlackService {
         producer: 'github.com/bjerkio/nestjs-slack@v1',
       },
     };
+
     invariant(this.log, 'expected Google Logger instance');
 
-    await this.log.write(this.log.entry(metadata, { slack: req }));
+    const channel = req.channel ?? this.options.defaultChannel;
+
+    await this.log.write(
+      this.log.entry(metadata, {
+        slack: {
+          channel,
+          ...req,
+        },
+      }),
+    );
   }
 }
