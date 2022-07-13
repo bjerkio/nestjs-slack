@@ -1,4 +1,5 @@
 import { DynamicModule, Module, Provider } from '@nestjs/common';
+import invariant from 'ts-invariant';
 import {
   GOOGLE_LOGGING,
   SLACK_MODULE_OPTIONS,
@@ -13,7 +14,6 @@ import {
   SlackConfigFactory,
   SlackSyncConfig,
 } from './types';
-import { invariant } from './utils';
 
 @Module({
   providers: [SlackService],

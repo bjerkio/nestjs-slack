@@ -3,6 +3,7 @@ import { Inject, Injectable } from '@nestjs/common';
 import type { ChatPostMessageArguments, WebClient } from '@slack/web-api';
 import axios, { AxiosError } from 'axios';
 import type { SlackBlockDto } from 'slack-block-builder';
+import invariant from 'ts-invariant';
 import {
   GOOGLE_LOGGING,
   SLACK_MODULE_OPTIONS,
@@ -10,7 +11,6 @@ import {
   SLACK_WEB_CLIENT,
 } from './constants';
 import type { SlackConfig } from './types';
-import { invariant } from './utils';
 
 export type SlackMessageOptions = Partial<ChatPostMessageArguments>;
 

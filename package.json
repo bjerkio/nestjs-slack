@@ -49,7 +49,8 @@
     "@google-cloud/logging": "^10.0.1",
     "@slack/web-api": "^6",
     "axios": "^0.27.2",
-    "slack-block-builder": "^2"
+    "slack-block-builder": "^2",
+    "ts-invariant": "^0.10.3"
   },
   "peerDependencies": {
     "@nestjs/common": ">=9 <=10",
