@@ -586,7 +586,7 @@
     retry-request "^5.0.0"
     teeny-request "^8.0.0"
 
-"@google-cloud/logging@^10.1.0":
+"@google-cloud/logging@^10.0.1":
   version "10.1.0"
   resolved "https://registry.yarnpkg.com/@google-cloud/logging/-/logging-10.1.0.tgz#3d6d48cb89394ddb01b2aebe6c41bd7169d1468f"
   integrity sha512-GvGOZ1tiaPghHYCylqSuwSvV7SH7NIuQ1VZOuqPGg7ZLVtJlAhEq/HLJby9unM7D2jO1WyIdI/9NG+KLGjT06A==
@@ -1097,15 +1097,15 @@
   integrity sha512-6FSyuKt3dqmXpKxu5cH7vCm2Ekj7WpyaYyznTQ/SpKZKkdLvpkcp0/HbPFTtDI9O1wHGeaPgs6h3AtZmRRDXjA==
 
 "@slack/web-api@^6":
-  version "6.7.1"
-  resolved "https://registry.yarnpkg.com/@slack/web-api/-/web-api-6.7.1.tgz#a0e983ec7925dccaf8fe15047f1a53eb82c24888"
-  integrity sha512-Aa2E/7NtGagd7mVsFCrc69iZMoviR2032SBOic06sYVvptdzJlvNsSQVqLCb1Aqz7r/jodb2fnXO1gl016OcWQ==
+  version "6.7.2"
+  resolved "https://registry.yarnpkg.com/@slack/web-api/-/web-api-6.7.2.tgz#13b585bdac9e18a578aeb5e5e44d88a09b11e384"
+  integrity sha512-qgWMxdy1A2uNvhETfRl349UjTEvnUzHl947Ly5c+lqOrXJIwsG12szL4tD3WrRlTuxCijDemF3FjtUNz18YAxg==
   dependencies:
     "@slack/logger" "^3.0.0"
     "@slack/types" "^2.0.0"
     "@types/is-stream" "^1.1.0"
     "@types/node" ">=12.0.0"
-    axios "^0.26.1"
+    axios "^0.27.2"
     eventemitter3 "^3.1.0"
     form-data "^2.5.0"
     is-electron "2.2.0"
@@ -1653,13 +1653,6 @@ asynckit@^0.4.0:
   version "0.4.0"
   resolved "https://registry.yarnpkg.com/asynckit/-/asynckit-0.4.0.tgz#c79ed97f7f34cb8f2ba1bc9790bcc366474b4b79"
   integrity sha1-x57Zf380y48robyXkLzDZkdLS3k=
-
-axios@^0.26.1:
-  version "0.26.1"
-  resolved "https://registry.yarnpkg.com/axios/-/axios-0.26.1.tgz#1ede41c51fcf51bbbd6fd43669caaa4f0495aaa9"
-  integrity sha512-fPwcX4EvnSHuInCMItEhAGnaSEXRBjtzh9fOtsE6E1G6p7vl7edEeZe11QHf18+6+9gR5PbKV/sGKNaD8YaMeA==
-  dependencies:
-    follow-redirects "^1.14.8"
 
 axios@^0.27.2:
   version "0.27.2"
@@ -2884,7 +2877,7 @@ flatted@^3.1.0:
   resolved "https://registry.yarnpkg.com/flatted/-/flatted-3.1.0.tgz#a5d06b4a8b01e3a63771daa5cb7a1903e2e57067"
   integrity sha512-tW+UkmtNg/jv9CSofAKvgVcO7c2URjhTdW1ZTkcAritblu8tajiYy7YisnIflEwtKssCtOxpnBRoCB7iap0/TA==
 
-follow-redirects@^1.14.8, follow-redirects@^1.14.9:
+follow-redirects@^1.14.9:
   version "1.15.0"
   resolved "https://registry.yarnpkg.com/follow-redirects/-/follow-redirects-1.15.0.tgz#06441868281c86d0dda4ad8bdaead2d02dca89d4"
   integrity sha512-aExlJShTV4qOUOL7yF1U5tvLCB0xQuudbf6toyYA0E/acBNw71mvjFTnLaRp50aQaYocMR0a/RMMBIHeZnGyjQ==
