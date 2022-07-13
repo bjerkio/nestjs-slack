@@ -4,14 +4,9 @@ import { SlackService } from '../slack.service';
 import * as nock from 'nock';
 import { Injectable, Module } from '@nestjs/common';
 import { SlackConfig } from '../types';
-import { MockAgent, setGlobalDispatcher } from 'undici';
 
 describe('slack.module', () => {
   const baseUrl = 'http://example.com';
-
-  const mockAgent = new MockAgent();
-  setGlobalDispatcher(mockAgent);
-  const mockPool = mockAgent.get(baseUrl);
 
   it('should construct with useFactory', async () => {
     const app = await Test.createTestingModule({
@@ -28,15 +23,15 @@ describe('slack.module', () => {
     }).compile();
     const service = app.get<SlackService>(SlackService);
 
-    mockPool
-      .intercept({
-        path: '/webhook',
-        method: 'POST',
-        body: JSON.stringify({ text: 'hello-world' }),
+    const scope = nock(baseUrl, { encodedQueryParams: true })
+      .post('/webhook', {
+        text: 'hello-world',
       })
       .reply(200, 'ok');
 
     await service.postMessage({ text: 'hello-world' });
+
+    scope.done();
   });
 
   it('should construct with useClass', async () => {
@@ -66,14 +61,14 @@ describe('slack.module', () => {
     }).compile();
     const service = app.get<SlackService>(SlackService);
 
-    mockPool
-      .intercept({
-        path: '/webhook',
-        method: 'POST',
-        body: JSON.stringify({ text: 'hello-world' }),
+    const scope = nock(baseUrl, { encodedQueryParams: true })
+      .post('/webhook', {
+        text: 'hello-world',
       })
       .reply(200, 'ok');
 
     await service.postMessage({ text: 'hello-world' });
+
+    scope.done();
   });
 });
