@@ -12,7 +12,7 @@ describe('webhook', () => {
     output = jest.fn();
     const app = await createApp({
       type: 'webhook',
-      webhookOptions: { url: `${baseUrl}/webhook` },
+      url: `${baseUrl}/webhook`,
     });
     service = app.get<SlackService>(SlackService);
   });

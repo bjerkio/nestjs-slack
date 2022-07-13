@@ -19,7 +19,7 @@ describe('slack.module', () => {
           useFactory: () => {
             return {
               type: 'webhook',
-              webhookOptions: { url: `${baseUrl}/webhook` },
+              url: `${baseUrl}/webhook`,
             };
           },
         }),
@@ -44,7 +44,7 @@ describe('slack.module', () => {
       slackConfigModuleOptions(): SlackConfig {
         return {
           type: 'webhook',
-          webhookOptions: { url: `${baseUrl}/webhook` },
+          url: `${baseUrl}/webhook`,
         };
       }
     }

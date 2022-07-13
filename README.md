@@ -34,6 +34,11 @@ and reusable Slack code declaratively and ready for production.
 
 [nestjs]: https://github.com/nestjs/nest
 
+This documentation is for v2 of this library. If you are looking for v1 documentation,
+please check the [v1] branch.
+
+[v1]: https://github.com/bjerkio/nestjs-slack/tree/v1
+
 ### :zap: &nbsp; Features
 
 - Used in many production workloads.
@@ -58,9 +63,7 @@ import { SlackModule } from 'nestjs-slack';
   imports: [
     SlackModule.forRoot({
       type: 'api',
-      apiOptions: {
-        token: '<insert-token-here',
-      },
+      token: '<insert-token-here>',
     }),
   ],
 })
@@ -72,9 +75,7 @@ To use `webhook` type, you'll typically use these settings:
 ```typescript
 SlackModule.forRoot({
   type: 'webhook',
-  webhookOptions: {
-    url: '<the webhook url>',
-  },
+  url: '<the webhook url>',
 }),
 ```
 
