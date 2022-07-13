@@ -1,5 +1,21 @@
 # Changelog
 
+## [2.0.0](https://github.com/bjerkio/nestjs-slack/compare/v1.4.1...v2.0.0) (2022-07-13)
+
+
+### ⚠ BREAKING CHANGES
+
+* Improve configuration (#211)
+
+### Features
+
+* Add multiple webhooks feature ([#217](https://github.com/bjerkio/nestjs-slack/issues/217)) ([5843539](https://github.com/bjerkio/nestjs-slack/commit/58435397f8b0a171e600ac6f1e71129dd3805c22))
+
+
+### Code Refactoring
+
+* Improve configuration ([#211](https://github.com/bjerkio/nestjs-slack/issues/211)) ([0982baf](https://github.com/bjerkio/nestjs-slack/commit/0982baf0281674a0a857ffd94bee1c24c58406ec))
+
 ## [1.4.1](https://github.com/bjerkio/nestjs-slack/compare/v1.4.0...v1.4.1) (2022-07-13)
 
 
