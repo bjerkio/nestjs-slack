@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.4.1](https://github.com/bjerkio/nestjs-slack/compare/v1.4.0...v1.4.1) (2022-07-13)
+
+
+### Bug Fixes
+
+* wrongly assigned channel ([#212](https://github.com/bjerkio/nestjs-slack/issues/212)) ([f80c66d](https://github.com/bjerkio/nestjs-slack/commit/f80c66d0a1edb3419278508d863ab53818266b19))
+
 ## [1.4.0](https://github.com/bjerkio/nestjs-slack/compare/v1.3.4...v1.4.0) (2022-07-13)
 
 
