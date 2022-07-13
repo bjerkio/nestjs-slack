@@ -4,7 +4,6 @@ import {
   GOOGLE_LOGGING,
   SLACK_MODULE_OPTIONS,
   SLACK_MODULE_USER_OPTIONS,
-  SLACK_WEBHOOK_URL,
   SLACK_WEB_CLIENT,
 } from './constants';
 import { SlackService } from './slack.service';
@@ -29,7 +28,6 @@ export class SlackModule {
       this.createAsyncConfig(),
       this.createAsyncGoogleLogger(),
       this.createAsyncWebClient(),
-      this.createAsyncWebhook(),
     ];
     return {
       global: opts.isGlobal,
@@ -45,7 +43,6 @@ export class SlackModule {
       this.createAsyncConfig(),
       this.createAsyncGoogleLogger(),
       this.createAsyncWebClient(),
-      this.createAsyncWebhook(),
     ];
     return {
       global: opts.isGlobal,
@@ -122,23 +119,6 @@ export class SlackModule {
 
         const { WebClient } = await import('@slack/web-api');
         return new WebClient(opts.token, opts.clientOptions);
-      },
-    };
-  }
-
-  private static createAsyncWebhook(): Provider {
-    return {
-      provide: SLACK_WEBHOOK_URL,
-      inject: [SLACK_MODULE_OPTIONS],
-      useFactory: async (opts: SlackConfig) => {
-        if (opts.type !== 'webhook') {
-          return {
-            provide: SLACK_WEBHOOK_URL,
-            useValue: null,
-          };
-        }
-
-        return opts.url;
       },
     };
   }

@@ -1,5 +1,6 @@
 import { ModuleMetadata, Type } from '@nestjs/common';
 import { WebClientOptions } from '@slack/web-api';
+import { Channels } from './plugin';
 
 export interface SlackApiOptions {
   type: 'api';
@@ -32,6 +33,30 @@ export interface SlackWebhookOptions {
   url: string;
 }
 
+export interface SlackMultipleWebhooksOptions {
+  type: 'webhook';
+
+  /**
+   * Incoming Webhooks are a simple way to post messages from apps into Slack.
+   * Creating an Incoming Webhook gives you a unique URL to which you send a
+   * JSON payload with the message text and some options.
+   *
+   * Below, you can add multiple channels.
+   *
+   * Read more: https://api.slack.com/messaging/webhooks
+   */
+  channels: {
+    name: string;
+    url: string;
+  }[];
+
+  /**
+   * This option is used when channel isn't defined
+   * when sending a request.
+   */
+  defaultChannel?: Channels;
+}
+
 export interface SlackStdoutOptions {
   type: 'stdout';
 
@@ -54,6 +79,7 @@ export interface SlackGoogleOptions {
 export type SlackConfig =
   | SlackApiOptions
   | SlackWebhookOptions
+  | SlackMultipleWebhooksOptions
   | SlackStdoutOptions
   | SlackGoogleOptions;
 
