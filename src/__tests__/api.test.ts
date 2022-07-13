@@ -11,7 +11,7 @@ describe('api', () => {
     const app = await createApp({
       type: 'api',
       defaultChannel: 'my-channel',
-      apiOptions: { token: 'my-token' },
+      token: 'my-token',
     });
     service = app.get<SlackService>(SlackService);
   });

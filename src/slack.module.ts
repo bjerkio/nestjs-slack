@@ -120,16 +120,8 @@ export class SlackModule {
           };
         }
 
-        invariant(
-          opts.apiOptions,
-          'You must provide `apiOptions` when using the api type.',
-        );
-
         const { WebClient } = await import('@slack/web-api');
-        return new WebClient(
-          opts.apiOptions.token,
-          opts.apiOptions.clientOptions,
-        );
+        return new WebClient(opts.token, opts.clientOptions);
       },
     };
   }
@@ -146,12 +138,7 @@ export class SlackModule {
           };
         }
 
-        invariant(
-          opts.webhookOptions,
-          'You must provide `webhookOptions` when using the webhook type.',
-        );
-
-        return opts.webhookOptions.url;
+        return opts.url;
       },
     };
   }

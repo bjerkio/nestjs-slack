@@ -1,7 +1,7 @@
 import type { LogSync } from '@google-cloud/logging';
-import axios, { AxiosError } from 'axios';
 import { Inject, Injectable } from '@nestjs/common';
 import type { ChatPostMessageArguments, WebClient } from '@slack/web-api';
+import axios, { AxiosError } from 'axios';
 import type { SlackBlockDto } from 'slack-block-builder';
 import {
   GOOGLE_LOGGING,
@@ -9,7 +9,7 @@ import {
   SLACK_WEBHOOK_URL,
   SLACK_WEB_CLIENT,
 } from './constants';
-import type { SlackConfig, SlackRequestType } from './types';
+import type { SlackConfig } from './types';
 import { invariant } from './utils';
 
 export type SlackMessageOptions = Partial<ChatPostMessageArguments>;
@@ -106,12 +106,14 @@ export class SlackService {
    * @param opts
    */
   async postMessage(req: SlackMessageOptions): Promise<void> {
-    const requestTypes: Record<SlackRequestType, () => Promise<void>> = {
+    const requestTypes = {
       api: async () => this.runApiRequest(req),
       webhook: async () => this.runWebhookRequest(req),
       stdout: async () => this.runStdoutRequest(req),
       google: async () => this.runGoogleLoggingRequest(req),
     };
+
+    invariant(requestTypes[this.options.type], 'expected option to exist');
 
     await requestTypes[this.options.type]();
   }

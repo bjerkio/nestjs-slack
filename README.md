@@ -58,9 +58,7 @@ import { SlackModule } from 'nestjs-slack';
   imports: [
     SlackModule.forRoot({
       type: 'api',
-      apiOptions: {
-        token: '<insert-token-here',
-      },
+      token: '<insert-token-here>',
     }),
   ],
 })
@@ -72,9 +70,7 @@ To use `webhook` type, you'll typically use these settings:
 ```typescript
 SlackModule.forRoot({
   type: 'webhook',
-  webhookOptions: {
-    url: '<the webhook url>',
-  },
+  url: '<the webhook url>',
 }),
 ```
 

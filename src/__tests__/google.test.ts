@@ -1,4 +1,4 @@
-import { Log, LogSync } from '@google-cloud/logging';
+import { LogSync } from '@google-cloud/logging';
 import { Test } from '@nestjs/testing';
 import {
   GOOGLE_LOGGING,
