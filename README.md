@@ -34,8 +34,8 @@ and reusable Slack code declaratively and ready for production.
 
 [nestjs]: https://github.com/nestjs/nest
 
-This documentation is for v2 of this library. If you are looking for v1 documentation,
-please check the [v1] branch.
+This documentation is for v2 of this library. If you are looking for v1
+documentation, please check the [v1] branch.
 
 [v1]: https://github.com/bjerkio/nestjs-slack/tree/v1
 
@@ -77,6 +77,32 @@ SlackModule.forRoot({
   type: 'webhook',
   url: '<the webhook url>',
 }),
+```
+
+You can also add multiple webhooks, like this:
+
+```typescript
+SlackModule.forRoot({
+  type: 'webhook',
+  channels: [
+    {
+      name: 'dev',
+      url: '<a webhook url>',
+    },
+    {
+      name: 'customers',
+      url: '<a webhook url>',
+    },
+  ],
+}),
+```
+
+You can also get type assertions if you add a Typescript definition like this:
+
+```typescript
+declare module 'nestjs-slack' {
+  type Channels = 'dev' | 'customers';
+}
 ```
 
 ### Example
