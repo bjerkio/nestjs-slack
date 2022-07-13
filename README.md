@@ -34,6 +34,11 @@ and reusable Slack code declaratively and ready for production.
 
 [nestjs]: https://github.com/nestjs/nest
 
+This documentation is for v2 of this library. If you are looking for v1 documentation,
+please check the [v1] branch.
+
+[v1]: https://github.com/bjerkio/nestjs-slack/tree/v1
+
 ### :zap: &nbsp; Features
 
 - Used in many production workloads.
