@@ -587,9 +587,9 @@
     teeny-request "^8.0.0"
 
 "@google-cloud/logging@^10.0.1":
-  version "10.1.0"
-  resolved "https://registry.yarnpkg.com/@google-cloud/logging/-/logging-10.1.0.tgz#3d6d48cb89394ddb01b2aebe6c41bd7169d1468f"
-  integrity sha512-GvGOZ1tiaPghHYCylqSuwSvV7SH7NIuQ1VZOuqPGg7ZLVtJlAhEq/HLJby9unM7D2jO1WyIdI/9NG+KLGjT06A==
+  version "10.1.1"
+  resolved "https://registry.yarnpkg.com/@google-cloud/logging/-/logging-10.1.1.tgz#c3e9dff453ab85147bc5e017a836cc29e127ac19"
+  integrity sha512-PPtlrE+fWhJssDMcgclfzjWlRypMQxHRqPRZAFvexHcYytpAJ+ppBmczi/30LtC7fyrj9K8wvifNPI+1DSUJ4Q==
   dependencies:
     "@google-cloud/common" "^4.0.0"
     "@google-cloud/paginator" "^4.0.0"
