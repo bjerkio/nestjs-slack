@@ -5013,9 +5013,9 @@ sisteransi@^1.0.5:
   integrity sha512-bLGGlR1QxBcynn2d5YmDX4MGjlZvy2MRBDRNHLJ8VI6l6+9FUiyTFNJ0IveOSP0bcXgVDPRcfGqA0pjaqUpfVg==
 
 slack-block-builder@^2:
-  version "2.5.0"
-  resolved "https://registry.yarnpkg.com/slack-block-builder/-/slack-block-builder-2.5.0.tgz#8ebcd33726bac0f6ee67711077ec66337d26d0a8"
-  integrity sha512-Gekb6jSKmyZtYXFrMXN637/FttYiUFvcoDeKt5epcwTDggxQvtw/Q3aO5eR4JNe5UW2JoSGao+6GX3NZf2yceA==
+  version "2.6.0"
+  resolved "https://registry.yarnpkg.com/slack-block-builder/-/slack-block-builder-2.6.0.tgz#26dea0f29e1cadcd016857f86ffc8cf5579d03e2"
+  integrity sha512-+a4Dpoz0EaP2ytS7N+DYmkww5j9oKx2LC6b2FTr/+fMUz5bS9xQCvdl45538zZYCpF0WgXOdZakJZZU7pDArXw==
 
 slash@^3.0.0:
   version "3.0.0"
