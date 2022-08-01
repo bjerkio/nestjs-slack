@@ -50,7 +50,7 @@
     "@slack/web-api": "^6",
     "axios": "^0.27.2",
     "slack-block-builder": "^2",
-    "node-fetch": "^2.6.7",
+    "node-fetch": "^3.2.10",
     "ts-invariant": "^0.10.3"
   },
   "peerDependencies": {
