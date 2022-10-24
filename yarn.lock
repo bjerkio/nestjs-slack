@@ -955,9 +955,9 @@
     tslib "2.4.0"
 
 "@nestjs/testing@^9.0.3":
-  version "9.0.3"
-  resolved "https://registry.yarnpkg.com/@nestjs/testing/-/testing-9.0.3.tgz#bad065fc377091531dbfe651c6bb3415abde5a75"
-  integrity sha512-6pLtQLblbBOukiABR6ty2HOpW2Z1lUJmP3mqKVFc11n7ZoF5kDxYaDTxdbMlcynye8eH7ehRvzsGnNJJmLlaSA==
+  version "9.1.5"
+  resolved "https://registry.yarnpkg.com/@nestjs/testing/-/testing-9.1.5.tgz#7e473073d8944f58512d1364da14eef75a4a4acf"
+  integrity sha512-xZcJSqqse5ITKGpxKeLejBRjZ1hrdQ1BcBDjq+oLSjbr0b7zjZu/mDfF5xCbUnvmDNtye65kEEVtWO1kS1Dh1A==
   dependencies:
     tslib "2.4.0"
 
