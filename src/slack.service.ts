@@ -1,6 +1,10 @@
 import type { LogSync } from '@google-cloud/logging';
 import { Inject, Injectable } from '@nestjs/common';
-import type { ChatPostMessageArguments, WebClient } from '@slack/web-api';
+import type {
+  ChatPostEphemeralArguments,
+  ChatPostMessageArguments,
+  WebClient,
+} from '@slack/web-api';
 import fetch from 'node-fetch';
 import type { SlackBlockDto } from 'slack-block-builder';
 import invariant from 'ts-invariant';
@@ -15,6 +19,21 @@ import type { SlackConfig } from './types';
 export type SlackMessageOptions<C = Channels> = Partial<
   ChatPostMessageArguments & { channel: C }
 >;
+
+export type SlackEphemeralMessageOptions<C = Channels> = PartialAllExcept<
+  ChatPostEphemeralArguments & { channel: C },
+  'user' | 'channel' | 'text'
+>;
+
+export type PartialAllExcept<
+  T, // extends Person,
+  R extends keyof T | string,
+> = Partial<Omit<T, 'id' | R>> & R extends keyof T
+  ? {
+      [K in R];
+    }
+  : // eslint-disable-next-line @typescript-eslint/ban-types
+    {};
 
 @Injectable()
 export class SlackService<C = Channels> {
@@ -117,6 +136,29 @@ export class SlackService<C = Channels> {
     invariant(requestTypes[this.options.type], 'expected option to exist');
 
     await requestTypes[this.options.type]();
+  }
+
+  async postEphemeral(req: SlackEphemeralMessageOptions<C>): Promise<void> {
+    const requestTypes = {
+      api: async () => this.runEphemeralRequest(req),
+    };
+
+    invariant(requestTypes[this.options.type], 'expected option to exist');
+
+    await requestTypes[this.options.type]();
+  }
+
+  private async runEphemeralRequest(req: SlackEphemeralMessageOptions) {
+    invariant(this.options.type === 'api');
+    invariant(this.client, 'expected this.client to be WebClient');
+
+    const channel = req.channel ?? this.options.defaultChannel;
+    invariant(channel, 'neither channel nor defaultChannel was applied');
+
+    await this.client.chat.postEphemeral({
+      channel,
+      ...req,
+    });
   }
 
   private async runApiRequest(req: SlackMessageOptions) {
