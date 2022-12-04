@@ -14,12 +14,23 @@ describe('SlackService', () => {
       const app = await createApp();
       service = app.get<SlackService>(SlackService);
       service.postMessage = jest.fn();
+      service.postEphemeral = jest.fn();
     });
     describe('sendText', () => {
       it('must forward to sendMessage', async () => {
         await service.sendText('hello world');
         expect(service.postMessage).toHaveBeenCalledWith({
           text: 'hello world',
+        });
+      });
+    });
+    describe('postEphemeral', () => {
+      it('must forward to postEphemeralMessage', async () => {
+        await service.sendText('hello world');
+        expect(service.postEphemeral).toHaveBeenCalledWith({
+          text: 'hello world',
+          user: 'some-user-id',
+          channel: 'some-channel',
         });
       });
     });
