@@ -125,6 +125,22 @@ export class AuthService {
 }
 ```
 
+The underlying Slack `WebClient` is also available to use on the `SlackService`:
+
+```typescript
+import { Injectable } from '@nestjs/common';
+import { SlackService } from 'nestjs-slack';
+
+@Injectable()
+export class AuthService {
+  constructor(private service: SlackService) {}
+
+  otherSlackWebClientMethod(email) {
+    return await this.service.client.users.lookupByEmail(email)
+  }
+}
+```
+
 ### Use with Google Logging
 
 ```shell

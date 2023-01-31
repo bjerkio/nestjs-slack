@@ -1,6 +1,7 @@
-import { SlackService } from '../slack.service';
+import { WebClient } from '@slack/web-api';
 import { BlockCollection, Blocks } from 'slack-block-builder';
 import { createApp } from './fixtures';
+import { SlackService } from '../slack.service';
 
 describe('SlackService', () => {
   it('must be defined', async () => {
@@ -29,6 +30,12 @@ describe('SlackService', () => {
         const blocks = BlockCollection(Blocks.Section({ text: 'hello-world' }));
         await service.sendBlocks(blocks);
         expect(service.postMessage).toHaveBeenCalledWith({ blocks });
+      });
+    });
+
+    describe('WebClient', () => {
+      it('slack sdk WebClient is available', async () => {
+        expect(service.client).toBeDefined();
       });
     });
   });

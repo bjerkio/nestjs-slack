@@ -20,7 +20,7 @@ export type SlackMessageOptions<C = Channels> = Partial<
 export class SlackService<C = Channels> {
   constructor(
     @Inject(SLACK_MODULE_OPTIONS) private readonly options: SlackConfig,
-    @Inject(SLACK_WEB_CLIENT) private readonly client: WebClient | null,
+    @Inject(SLACK_WEB_CLIENT) public readonly client: WebClient | null,
     @Inject(GOOGLE_LOGGING) private readonly log: LogSync | null,
   ) {}
 
