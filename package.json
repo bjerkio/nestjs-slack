@@ -57,5 +57,5 @@
     "@nestjs/common": ">=9 <=10",
     "@nestjs/core": ">=9 <=10"
   },
-  "prettier": "@cobraz/prettier-config"
+  "prettier": "@simenandre/prettier"
 }
