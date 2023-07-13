@@ -1,5 +1,12 @@
 # Changelog
 
+## [2.0.1](https://github.com/bjerkio/nestjs-slack/compare/v2.0.0...v2.0.1) (2023-07-13)
+
+
+### Bug Fixes
+
+* **deps:** update dependency axios to v1 ([#306](https://github.com/bjerkio/nestjs-slack/issues/306)) ([50f5b27](https://github.com/bjerkio/nestjs-slack/commit/50f5b27a979e832330c69431042d55c0ab034666))
+
 ## [2.0.0](https://github.com/bjerkio/nestjs-slack/compare/v1.4.1...v2.0.0) (2022-07-13)
 
 
