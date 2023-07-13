@@ -1,7 +1,7 @@
 import type { LogSync } from '@google-cloud/logging';
 import { Inject, Injectable } from '@nestjs/common';
 import type { ChatPostMessageArguments, WebClient } from '@slack/web-api';
-import fetch from 'node-fetch';
+import { fetch } from 'node-fetch';
 import type { SlackBlockDto } from 'slack-block-builder';
 import invariant from 'ts-invariant';
 import {
@@ -108,10 +108,10 @@ export class SlackService<C = Channels> {
    */
   async postMessage(req: SlackMessageOptions<C>): Promise<void> {
     const requestTypes = {
-      api: async () => this.runApiRequest(req),
-      webhook: async () => this.runWebhookRequest(req),
-      stdout: async () => this.runStdoutRequest(req),
-      google: async () => this.runGoogleLoggingRequest(req),
+      api: () => this.runApiRequest(req),
+      webhook: () => this.runWebhookRequest(req),
+      stdout: () => this.runStdoutRequest(req),
+      google: () => this.runGoogleLoggingRequest(req),
     };
 
     invariant(requestTypes[this.options.type], 'expected option to exist');
@@ -156,7 +156,9 @@ export class SlackService<C = Channels> {
         );
       }
 
-      return fetch(channel.url, {
+      // TODO: Replace with undici?
+      // eslint-disable-next-line @typescript-eslint/no-unsafe-call
+      await fetch(channel.url, {
         method: 'POST',
         body: JSON.stringify(slackRequest),
       });
@@ -164,18 +166,21 @@ export class SlackService<C = Channels> {
 
     invariant('url' in this.options);
 
-    return fetch(this.options.url, {
+    // TODO: Replace with undici?
+    // eslint-disable-next-line @typescript-eslint/no-unsafe-call
+    await fetch(this.options.url, {
       method: 'POST',
       body: JSON.stringify(req),
     });
   }
 
-  private async runStdoutRequest(req: SlackMessageOptions) {
+  private runStdoutRequest(req: SlackMessageOptions) {
     invariant(this.options.type === 'stdout');
+    invariant(this.options.output, 'expected output to be defined');
     this.options.output(req);
   }
 
-  private async runGoogleLoggingRequest(req: SlackMessageOptions) {
+  private runGoogleLoggingRequest(req: SlackMessageOptions) {
     invariant(this.options.type === 'google');
     const metadata = {
       severity: 'NOTICE',
@@ -189,7 +194,7 @@ export class SlackService<C = Channels> {
 
     const channel = req.channel ?? this.options.defaultChannel;
 
-    await this.log.write(
+    this.log.write(
       this.log.entry(metadata, {
         slack: {
           channel,

@@ -90,8 +90,8 @@ export type SlackSyncConfig = SlackConfig & {
 
 export interface SlackAsyncConfig extends Pick<ModuleMetadata, 'imports'> {
   useClass?: Type<SlackConfigFactory>;
-  useFactory?: (...args: any[]) => Promise<SlackConfig> | SlackConfig;
-  inject?: any[];
+  useFactory?: (...args: unknown[]) => Promise<SlackConfig> | SlackConfig;
+  inject?: unknown[];
   useExisting?: Type<SlackConfigFactory>;
 
   // If true, registers `SlackModule` as a global module.
