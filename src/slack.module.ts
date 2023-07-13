@@ -58,7 +58,7 @@ export class SlackModule {
       return {
         provide: SLACK_MODULE_USER_OPTIONS,
         useFactory: opts.useFactory,
-        inject: opts.inject || [],
+        inject: opts.inject ?? [],
       };
     }
     invariant(opts.useClass);
@@ -75,14 +75,11 @@ export class SlackModule {
     return {
       provide: SLACK_MODULE_OPTIONS,
       inject: [SLACK_MODULE_USER_OPTIONS],
-      useFactory: async (opts: SlackConfig) => {
-        return {
-          type: 'stdout',
-          output: /* istanbul ignore next */ (out: unknown) =>
-            process.stdout.write(`${JSON.stringify(out)}\n`),
-          ...opts,
-        };
-      },
+      useFactory: (opts: SlackConfig) => ({
+        output: /* istanbul ignore next */ (out: unknown) =>
+          process.stdout.write(`${JSON.stringify(out)}\n`),
+        ...opts,
+      }),
     };
   }
 

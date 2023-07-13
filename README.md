@@ -136,7 +136,7 @@ export class AuthService {
   constructor(private service: SlackService) {}
 
   otherSlackWebClientMethod(email) {
-    return await this.service.client.users.lookupByEmail(email)
+    return await this.service.client.users.lookupByEmail(email);
   }
 }
 ```

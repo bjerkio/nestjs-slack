@@ -9,8 +9,8 @@ changes to this document in a pull request.
 ## Issues and Pull Requests
 
 - If you're not sure about adding something,
-  [open an issue](https://github.com/bjerkio/nestjs-slack/issues/new) to
-  discuss it.
+  [open an issue](https://github.com/bjerkio/nestjs-slack/issues/new) to discuss
+  it.
 - Feel free to open a Pull Request early so that a discussion can be had as
   changes are developed.
 
@@ -38,5 +38,4 @@ chore, feat, etc.) Example: `docs: add linux setup instructions`
 ## Need Help?
 
 If any of this information confusing, incorrect, or incomplete, feel free to
-[open an issue](https://github.com/bjerkio/nestjs-slack/issues/new) for
-help.
+[open an issue](https://github.com/bjerkio/nestjs-slack/issues/new) for help.
