@@ -1,4 +1,9 @@
-import { ModuleMetadata, Type } from '@nestjs/common';
+import {
+  InjectionToken,
+  ModuleMetadata,
+  OptionalFactoryDependency,
+  Type,
+} from '@nestjs/common';
 import { WebClientOptions } from '@slack/web-api';
 import { Channels } from './plugin';
 
@@ -91,7 +96,7 @@ export type SlackSyncConfig = SlackConfig & {
 export interface SlackAsyncConfig extends Pick<ModuleMetadata, 'imports'> {
   useClass?: Type<SlackConfigFactory>;
   useFactory?: (...args: unknown[]) => Promise<SlackConfig> | SlackConfig;
-  inject?: unknown[];
+  inject?: Array<InjectionToken | OptionalFactoryDependency>;
   useExisting?: Type<SlackConfigFactory>;
 
   // If true, registers `SlackModule` as a global module.
