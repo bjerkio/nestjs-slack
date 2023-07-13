@@ -7,7 +7,7 @@ describe('stdout', () => {
 
   beforeEach(async () => {
     output = jest.fn();
-    const app = await createApp({ output });
+    const app = await createApp({ type: 'stdout', output });
     service = app.get<SlackService>(SlackService);
   });
 

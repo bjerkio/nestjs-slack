@@ -1,7 +1,7 @@
 import type { LogSync } from '@google-cloud/logging';
 import { Inject, Injectable } from '@nestjs/common';
 import type { ChatPostMessageArguments, WebClient } from '@slack/web-api';
-import { fetch } from 'node-fetch';
+import fetch from 'node-fetch';
 import type { SlackBlockDto } from 'slack-block-builder';
 import invariant from 'ts-invariant';
 import {
@@ -133,7 +133,7 @@ export class SlackService<C = Channels> {
   }
 
   private async runWebhookRequest(req: SlackMessageOptions) {
-    invariant(this.options.type === 'webhook');
+    invariant(this.options.type === 'webhook', 'expected type to be webhook');
 
     if ('channels' in this.options) {
       const {
@@ -162,9 +162,11 @@ export class SlackService<C = Channels> {
         method: 'POST',
         body: JSON.stringify(slackRequest),
       });
+
+      return;
     }
 
-    invariant('url' in this.options);
+    invariant('url' in this.options, 'expected url to be defined');
 
     // TODO: Replace with undici?
     // eslint-disable-next-line @typescript-eslint/no-unsafe-call
