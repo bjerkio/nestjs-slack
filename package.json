@@ -26,7 +26,7 @@
     "@google-cloud/logging": "^10.0.1",
     "@slack/web-api": "^6",
     "axios": "^1.0.0",
-    "node-fetch": "^2.6.7",
+    "node-fetch": "^3.0.0",
     "slack-block-builder": "^2",
     "ts-invariant": "^0.10.3"
   },
