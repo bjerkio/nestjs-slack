@@ -106,7 +106,7 @@ export class SlackService<C = Channels> {
     const requestTypes = {
       api: () => this.runApiRequest(req),
       webhook: () => this.runWebhookRequest(req),
-      stdout: () => this.runStdoutRequest(req),
+      stdout: () => this.runStdoutRequest(req)
     };
 
     invariant(requestTypes[this.options.type], 'expected option to exist');
