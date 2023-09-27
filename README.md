@@ -45,7 +45,6 @@ documentation, please check the [v1] branch.
 - Building blocks with [slack-block-builder].
 - Supports sending messages directly to Slack Web API.
 - Supports Slack webhooks.
-- Supports Google Logging.
 
 [slack-block-builder]: https://github.com/raycharius/slack-block-builder
 
@@ -136,33 +135,10 @@ export class AuthService {
   constructor(private service: SlackService) {}
 
   otherSlackWebClientMethod(email) {
-    return await this.service.client.users.lookupByEmail(email)
+    return await this.service.client.users.lookupByEmail(email);
   }
 }
 ```
-
-### Use with Google Logging
-
-```shell
-▶ yarn add @google-cloud/logging
-```
-
-```typescript
-import { SlackModule } from 'nestjs-slack';
-
-@Module({
-  imports: [SlackModule.forRoot({ type: 'google' })],
-})
-export class AppModule {}
-```
-
-When `type` is set to `google` the `@google-cloud/logging` package will be used
-to send logs to stdout [according to structured logs][structured-logs].
-
-You can deploy [gcl-slack] to consume logs from this library.
-
-[structured-logs]: https://cloud.google.com/logging/docs/structured-logging
-[gcl-slack]: https://github.com/bjerkio/gcl-slack
 
 ## Contribute & Disclaimer
 

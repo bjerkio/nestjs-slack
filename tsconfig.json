@@ -12,7 +12,8 @@
     "sourceMap": false,
     "outDir": "./dist",
     "rootDir": "./src",
-    "skipLibCheck": true
+    "skipLibCheck": true,
+    "strictNullChecks": true
   },
   "include": ["src/**/*"],
   "exclude": ["node_modules", "**/*.spec.ts"]

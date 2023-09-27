@@ -1,7 +1,6 @@
 import { DynamicModule, Module, Provider } from '@nestjs/common';
 import invariant from 'ts-invariant';
 import {
-  GOOGLE_LOGGING,
   SLACK_MODULE_OPTIONS,
   SLACK_MODULE_USER_OPTIONS,
   SLACK_WEB_CLIENT,
@@ -26,7 +25,6 @@ export class SlackModule {
         useValue: opts,
       },
       this.createAsyncConfig(),
-      this.createAsyncGoogleLogger(),
       this.createAsyncWebClient(),
     ];
     return {
@@ -41,7 +39,6 @@ export class SlackModule {
     const providers = [
       this.createAsyncOptionsProvider(opts),
       this.createAsyncConfig(),
-      this.createAsyncGoogleLogger(),
       this.createAsyncWebClient(),
     ];
     return {
@@ -58,7 +55,7 @@ export class SlackModule {
       return {
         provide: SLACK_MODULE_USER_OPTIONS,
         useFactory: opts.useFactory,
-        inject: opts.inject || [],
+        inject: opts.inject ?? [],
       };
     }
     invariant(opts.useClass);
@@ -75,33 +72,11 @@ export class SlackModule {
     return {
       provide: SLACK_MODULE_OPTIONS,
       inject: [SLACK_MODULE_USER_OPTIONS],
-      useFactory: async (opts: SlackConfig) => {
-        return {
-          type: 'stdout',
-          output: /* istanbul ignore next */ (out: unknown) =>
-            process.stdout.write(`${JSON.stringify(out)}\n`),
-          ...opts,
-        };
-      },
-    };
-  }
-
-  private static createAsyncGoogleLogger(): Provider {
-    return {
-      provide: GOOGLE_LOGGING,
-      inject: [SLACK_MODULE_OPTIONS],
-      useFactory: async (opts: SlackConfig) => {
-        if (opts.type !== 'google') {
-          return {
-            provide: GOOGLE_LOGGING,
-            useValue: null,
-          };
-        }
-
-        const { Logging } = await import('@google-cloud/logging');
-        const logging = new Logging();
-        return logging.logSync('slack');
-      },
+      useFactory: (opts: SlackConfig) => ({
+        output: /* istanbul ignore next */ (out: unknown) =>
+          process.stdout.write(`${JSON.stringify(out)}\n`),
+        ...opts,
+      }),
     };
   }
 
