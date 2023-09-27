@@ -1,6 +1,6 @@
 import { Inject, Injectable, Logger } from '@nestjs/common';
 import type { ChatPostMessageArguments, WebClient } from '@slack/web-api';
-import fetch from 'node-fetch';
+import fetch from 'node-fetch-commonjs';
 import type { SlackBlockDto } from 'slack-block-builder';
 import invariant from 'ts-invariant';
 import { SLACK_MODULE_OPTIONS, SLACK_WEB_CLIENT } from './constants';
@@ -106,7 +106,7 @@ export class SlackService<C = Channels> {
     const requestTypes = {
       api: () => this.runApiRequest(req),
       webhook: () => this.runWebhookRequest(req),
-      stdout: () => this.runStdoutRequest(req)
+      stdout: () => this.runStdoutRequest(req),
     };
 
     invariant(requestTypes[this.options.type], 'expected option to exist');
