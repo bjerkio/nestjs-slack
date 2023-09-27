@@ -1,14 +1,9 @@
-import type { LogSync } from '@google-cloud/logging';
-import { Inject, Injectable } from '@nestjs/common';
+import { Inject, Injectable, Logger } from '@nestjs/common';
 import type { ChatPostMessageArguments, WebClient } from '@slack/web-api';
-import fetch from 'node-fetch';
+import fetch from 'node-fetch-commonjs';
 import type { SlackBlockDto } from 'slack-block-builder';
 import invariant from 'ts-invariant';
-import {
-  GOOGLE_LOGGING,
-  SLACK_MODULE_OPTIONS,
-  SLACK_WEB_CLIENT,
-} from './constants';
+import { SLACK_MODULE_OPTIONS, SLACK_WEB_CLIENT } from './constants';
 import { Channels } from './plugin';
 import type { SlackConfig } from './types';
 
@@ -18,10 +13,11 @@ export type SlackMessageOptions<C = Channels> = Partial<
 
 @Injectable()
 export class SlackService<C = Channels> {
+  private readonly log = new Logger(SlackService.name);
+
   constructor(
     @Inject(SLACK_MODULE_OPTIONS) private readonly options: SlackConfig,
     @Inject(SLACK_WEB_CLIENT) public readonly client: WebClient | null,
-    @Inject(GOOGLE_LOGGING) private readonly log: LogSync | null,
   ) {}
 
   /**
@@ -111,7 +107,6 @@ export class SlackService<C = Channels> {
       api: () => this.runApiRequest(req),
       webhook: () => this.runWebhookRequest(req),
       stdout: () => this.runStdoutRequest(req),
-      google: () => this.runGoogleLoggingRequest(req),
     };
 
     invariant(requestTypes[this.options.type], 'expected option to exist');
@@ -180,29 +175,5 @@ export class SlackService<C = Channels> {
     invariant(this.options.type === 'stdout');
     invariant(this.options.output, 'expected output to be defined');
     this.options.output(req);
-  }
-
-  private runGoogleLoggingRequest(req: SlackMessageOptions) {
-    invariant(this.options.type === 'google');
-    const metadata = {
-      severity: 'NOTICE',
-      'logging.googleapis.com/labels': { type: 'nestjs-slack' },
-      'logging.googleapis.com/operation': {
-        producer: 'github.com/bjerkio/nestjs-slack@v1',
-      },
-    };
-
-    invariant(this.log, 'expected Google Logger instance');
-
-    const channel = req.channel ?? this.options.defaultChannel;
-
-    this.log.write(
-      this.log.entry(metadata, {
-        slack: {
-          channel,
-          ...req,
-        },
-      }),
-    );
   }
 }
