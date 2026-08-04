@@ -23,7 +23,7 @@
   "prettier": "@simenandre/prettier",
   "dependencies": {
     "@bjerk/eslint-config": "^5.0.0",
-    "@google-cloud/logging": "^10.0.1",
+    "@google-cloud/logging": "^11.0.0",
     "@slack/web-api": "^6",
     "axios": "^1.0.0",
     "node-fetch": "^2.6.7",
